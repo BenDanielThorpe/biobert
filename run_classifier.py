@@ -811,6 +811,7 @@ def main(_):
       "mnli": MnliProcessor,
       "mrpc": MrpcProcessor,
       "xnli": XnliProcessor,
+      "reagents": ReagentTypeProcessor
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
