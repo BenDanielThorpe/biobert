@@ -394,7 +394,7 @@ class ReagentTypeProcessor(DataProcessor):
     return self._create_examples(data_dir+"/test.csv")
 
   def get_labels(self):
-    ["[1, 0, 0, 0, 0]", "[0, 1, 0, 0, 0]", "[0, 0, 1, 0, 0]", "[0, 0, 0, 1, 0]", "[0, 0, 0, 0, 1]", "[0.2, 0.2, 0.2, 0.2, 0.2]"]
+    return ["[1, 0, 0, 0, 0]", "[0, 1, 0, 0, 0]", "[0, 0, 1, 0, 0]", "[0, 0, 0, 1, 0]", "[0, 0, 0, 0, 1]", "[0.2, 0.2, 0.2, 0.2, 0.2]"]
 
 
 def convert_single_example(ex_index, example, label_list, max_seq_length,
