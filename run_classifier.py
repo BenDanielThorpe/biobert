@@ -381,7 +381,7 @@ class ReagentTypeProcessor(DataProcessor):
     df = pd.read_csv(csv_path)
     examples = []
     for i, ex in df.iterrows():
-      examples.append(InputExample(guid=i, text_a=tokenization.convert_to_unicode(ex["name"]), text_b=None, label=ex["label"]))
+      examples.append(InputExample(guid=i, text_a=tokenization.convert_to_unicode(ex["name"]), text_b=None, label=ex["class"]))
     return examples
   
   def get_train_examples(self, data_dir):
