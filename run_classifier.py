@@ -26,6 +26,8 @@ import optimization
 import tokenization
 import tensorflow as tf
 
+import pandas as pd
+
 flags = tf.flags
 
 FLAGS = flags.FLAGS
@@ -372,6 +374,27 @@ class ColaProcessor(DataProcessor):
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
+
+class ReagentTypeProcessor(DataProcessor):
+  """Processor for Reagent Types Dataset"""
+  def _create_examples(self, csv_path):
+    df = pd.read_csv(csv_path)
+    examples = []
+    for i, ex in df.iterrows():
+      examples.append(InputExample(guid=i, text_a=tokenization.convert_to_unicode(ex["name"]), text_b=None, label=ex["label"]))
+    return examples
+  
+  def get_train_examples(self, data_dir):
+    return self._create_examples(data_dir+"/train.csv")
+
+  def get_dev_examples(self, data_dir):
+    return self._create_examples(data_dir+"/dev.csv")
+
+  def get_dev_examples(self, data_dir):
+    return self._create_examples(data_dir+"/test.csv")
+
+  def get_labels(self):
+    ["[1, 0, 0, 0, 0]", "[0, 1, 0, 0, 0]", "[0, 0, 1, 0, 0]", "[0, 0, 0, 1, 0]", "[0, 0, 0, 0, 1]", "[0.2, 0.2, 0.2, 0.2, 0.2]"]
 
 
 def convert_single_example(ex_index, example, label_list, max_seq_length,
